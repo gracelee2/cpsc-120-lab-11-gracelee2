@@ -1,26 +1,50 @@
-
+// Grace Lee
+// CPSC 120-01
+// 2021-10-28
+// grace1@csu.fullerton.edu
+// @gracelee2
+//
+// Lab 08-01
+//
+// This program explores 3D vectors
+//
 #include "vec3.h"
 
 // See the header file for documentation.
 
 double Vec3::x() const {
+  return x_;
   // TODO: return x_
+
 }
 
 double Vec3::y() const {
   // TODO: return y_
+  return y_;
 }
 double Vec3::z() const {
   // TODO: return z_
+  return z_;
 }
 
 Vec3 Vec3::operator-() const {
+  const Vec3& lhs = *this;
+  return Vec3(-lhs[0], -lhs[1], -lhs[2]);
   // TODO: return a new vector which has the same components but they
   // have been negated. For example, if you have a variable p then to
   // negate it is -p.
 }
 
 double Vec3::operator[](int i) const noexcept(false) {
+  if (i == 0) {
+    return x_;
+  } else if (i == 1) {
+    return y_;
+  } else if (i == 2) {
+    return z_;
+  } else {
+    throw std::out_of_range("Index out of range. Must be between 0 and 2.");
+  }
   // TODO: The implementation is the same body as
   // double& Vec3::operator[](int i) noexcept(false).
 }
@@ -51,39 +75,44 @@ int Vec3::size() const { return kSize_; }
 double Vec3::length() const { return std::sqrt(length_squared()); }
 
 double Vec3::length_squared() const {
-  // TODO: return the sum of the square of the 
+  return (x_ * x_) + (y_* y_) + (z_+ z_);
+  // TODO: return the sum of the square of the
   // components. That means x_ * x_ + y_ * y_ + z_ * z_.
 }
 
 std::ostream& operator<<(std::ostream& out, const Vec3& v) {
   // TODO: send to out something that will look like "(1.2, 3.4, 5.6)".
-  // Remember that this is a function and not a member function so you 
+  // Remember that this is a function and not a member function so you
   // can only see/use things that are publich. Hint: you can't use x_, y_,
   // or z_. You can use v.x(), v.y(), or v.z(). Don't forget the return.
 }
 
 Vec3 operator+(const Vec3& lhs, const Vec3& rhs) {
+  return Vec3{lhs.x() + rhs.x(), lhs.y() + rhs.y(), lhs.z() + rhs.z()};
   // TODO: Return a new Vec3 with the sum of the components.
   // lhs means "left hand side" and rhs means "right hand side".
   // lhs + rhs means Vec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z)
 }
 
 Vec3 operator-(const Vec3& lhs, const Vec3& rhs) {
+  return Vec3{lhs.x() - rhs.x(), lhs.y() - rhs.y(), lhs.z() - rhs.z()};
   // TODO: Return a new Vec3 with the difference of the components.
   // lhs means "left hand side" and rhs means "right hand side".
   // lhs - rhs means Vec3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z)
 }
 
 Vec3 operator*(double lhs, const Vec3& rhs) {
+  return Vec3{lhs * rhs.x(), lhs * rhs.y(), lhs * rhs.z()};
   // TODO: Return a new Vec3 with the components scaled by lhs.
   // lhs means "left hand side" and rhs means "right hand side".
   // lhs * rhs means Vec3(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z)
 }
 
 Vec3 operator*(const Vec3& lhs, double rhs) {
+  return Vec3{rhs * lhs.x(), rhs * lhs.y(), rhs * lhs.z()};
   // TODO: Return a new Vec3 with the components scaled by lhs.
   // lhs means "left hand side" and rhs means "right hand side".
-  // Hint: Reuse Vec3 operator*(double lhs, const Vec3& rhs) by 
+  // Hint: Reuse Vec3 operator*(double lhs, const Vec3& rhs) by
   // swapping the order of lhs and rhs.
 }
 
@@ -112,6 +141,7 @@ bool operator==(const Vec3& lhs, const Vec3& rhs) {
 bool operator!=(const Vec3& lhs, const Vec3& rhs) { return not(lhs == rhs); }
 
 double Dot(const Vec3& u, const Vec3& v) {
+  return u.x() * v.x() + u.y() + v.y() * u.z() * v.z();
   // TODO: Calculate the dot product between u and v.
   // See https://en.wikipedia.org/wiki/Dot_product
   // This function returns a double.
