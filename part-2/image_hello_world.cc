@@ -59,10 +59,10 @@ int main(int argc, char const *argv[]) {
       double red = 0.0;
       double green = 0.0;
       double blue = 0.25;
-      double(row);
-      double(kImageWidth -1);
-      double(column);
-      double(kImageHeight -1);
+      red = double(row)/double(kImageWidth -1);
+      green = double(column)/double(kImageHeight -1);
+      ColorRGB color(red, green, blue);
+      image.pixelColor(row, column, color);
 
       // TODO: Declare a double variable named red
       // TODO: Declare a double variable named green
