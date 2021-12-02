@@ -75,12 +75,14 @@ int Vec3::size() const { return kSize_; }
 double Vec3::length() const { return std::sqrt(length_squared()); }
 
 double Vec3::length_squared() const {
-  return (x_ * x_) + (y_* y_) + (z_+ z_);
+  return (x_ * x_) + (y_* y_) + (z_* z_);
   // TODO: return the sum of the square of the
   // components. That means x_ * x_ + y_ * y_ + z_ * z_.
 }
 
 std::ostream& operator<<(std::ostream& out, const Vec3& v) {
+  out << "(" << v.x() << ", " << v.y() << ", " << v.z() << ")";
+  return out;
   // TODO: send to out something that will look like "(1.2, 3.4, 5.6)".
   // Remember that this is a function and not a member function so you
   // can only see/use things that are publich. Hint: you can't use x_, y_,
@@ -141,7 +143,7 @@ bool operator==(const Vec3& lhs, const Vec3& rhs) {
 bool operator!=(const Vec3& lhs, const Vec3& rhs) { return not(lhs == rhs); }
 
 double Dot(const Vec3& u, const Vec3& v) {
-  return u.x() * v.x() + u.y() + v.y() * u.z() * v.z();
+  return u.x() * v.x() + u.y() * v.y() + u.z() * v.z();
   // TODO: Calculate the dot product between u and v.
   // See https://en.wikipedia.org/wiki/Dot_product
   // This function returns a double.
