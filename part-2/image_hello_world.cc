@@ -1,4 +1,13 @@
-
+// Grace Lee
+// CPSC 120-01
+// 2021-10-28
+// grace1@csu.fullerton.edu
+// @gracelee2
+//
+// Lab 08-01
+//
+// This program makes a color gradient
+//
 #include <Magick++.h>
 
 #include <cmath>
@@ -47,6 +56,14 @@ int main(int argc, char const *argv[]) {
   // columns < 0
   for (int column = int(image.columns() - 1); column >= 0; column--) {
     for (unsigned int row = 0; row < image.rows(); row++) {
+      double red = 0.0;
+      double green = 0.0;
+      double blue = 0.25;
+      double(row);
+      double(kImageWidth -1);
+      double(column);
+      double(kImageHeight -1);
+
       // TODO: Declare a double variable named red
       // TODO: Declare a double variable named green
       // TODO: Declare a double variable named blue; initialize blue to 0.25
